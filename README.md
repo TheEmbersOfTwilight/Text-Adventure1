@@ -11,7 +11,7 @@ This repository contains the game code (Python) and the story/prose currently em
 Quick facts
 -----------
 - Project name: Warden's Sanctum
-- Language: Python (single-file prototype: TextAdventure.py)
+- Language: Python
 - Status: Prototype / early demo
 - Intended distribution: Free to play and edit; non-commercial restriction on assets and prose
 
@@ -22,26 +22,22 @@ Requirements
 
 How to play
 -----------
-1. Clone this repository:
-   git clone https://github.com/TheEmbersOfTwilight/Text-Adventure1.git
-2. Change into the repository directory:
-   cd Text-Adventure1
-3. Run the game:
-   python TextAdventure.py
+1. Download the newest release of the game
+2. Run the .py file:  
+     -You can either run it locally or use an online IDE such as https://trinket.io/ or https://www.online-python.com/
 
 Controls
 --------
 - When you are presented with options, type the number of your choice and press Enter.
-- The game displays text with a typing effect; if you want a no-delay run, consider adding a --fast or --no-delay flag and a small change in the code to skip time.sleep delays.
 
 Project structure
 -----------------
-- TextAdventure.py — main Python game file (prototype)
+- TextAdventure.py — main Python game file 
 - (future) assets/ — images, audio, or other resources (if/when added)
 - README.md — this file
-- LICENSE-AGPLv3.txt — (add) AGPLv3 text for code
-- LICENSE-CC-BY-NC-SA-4.0.txt — (add) CC BY-NC-SA 4.0 text for assets/prose
-- LICENSES.md — (add) mapping file explaining which parts of the repo are under which license
+- LICENSE-AGPLv3 — AGPLv3 text for code
+- LICENSE-CC-BY-NC-SA-4.0 — CC BY-NC-SA 4.0 text for assets/prose
+- LICENSES.md — mapping file explaining which parts of the repo are under which license
 
 Contributing
 ------------
@@ -63,4 +59,4 @@ Changelog / Roadmap
 - v0.1 — Prototype: single-file Python demo (TextAdventure.py) with simple item flags and branching.
 - Planned:
   - Add save/load
-  - Add accessibility flags (skip typing effect)
+  - Add accessibility flags (skip typing effects
