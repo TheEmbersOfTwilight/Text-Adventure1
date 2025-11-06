@@ -22,7 +22,7 @@ Requirements
 
 How to play
 -----------
-1. Download the newest release of the game
+1. Download the latest release of the game
 2. Run the .py file:  
      -You can either run it locally or use an online IDE such as https://trinket.io/ or https://www.online-python.com/
 
