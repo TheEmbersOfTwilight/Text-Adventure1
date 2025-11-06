@@ -21,6 +21,10 @@ scars=False
 flowers_collected=False
 type_text("When you are given a choice, type the number associated with the option you would like to choose")
 print()
+time.sleep(2)
+type_text("Please do not do so until the options have fully loaded")
+print()
+time.sleep(2)
 type_text("Have a good experience")
 print()
 time.sleep(5)
@@ -177,6 +181,9 @@ while potion1 == False:
         continue
     elif choice5 == "2":
         type_text("You look closely at the beakers and see that one has a design on the glass identical to the one on the stick")
+        print()
+        time.sleep(1)
+        type_text("It has a strange purple liquid inside that seems to shimmer and move on its own")
         print()
         time.sleep(1)
         type_text("You grab the beaker and pocket it, then hear a strange noise just a few moments later")
