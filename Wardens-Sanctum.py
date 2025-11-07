@@ -11,7 +11,7 @@ def type_text(text, delay=0.05):
         sys.stdout.write(char)
         sys.stdout.flush()  
         time.sleep(delay)
-Razor=False
+Razor=0
 Wand=False
 door1=False
 potion1=False
@@ -20,6 +20,9 @@ timewasted=False
 scars=False
 flowers_collected=False
 water_collected=False
+infinite_razor_counter=0
+type_text("Welcome to 'Warden's Sanctum', a text-based adventure game")
+print()
 type_text("When you are given a choice, type the number associated with the option you would like to choose")
 print()
 time.sleep(2)
@@ -76,11 +79,38 @@ while Wand == False:
             time.sleep(1)
             continue
     elif choice1 == "2": 
-        if Razor == True:
+        if Razor == 1:
+            if infinite_razor_counter >20:
                 type_text("You look at the shelf and see nothing of interest, you walk back into thhe middle of the cell")
                 print()
                 time.sleep(1)
+                infinite_razor_counter=infinite_razor_counter+1
                 continue
+            else:
+                type_text("You look at the shelf and see another razor identical to the one you picked up earlier")
+                time.sleep(1)
+                print()
+                type_text("Are you happy Lennon?")
+                time.sleep(1)
+                print()
+                type_text(choice)
+                time.sleep(1)
+                print()
+                print("1. Pick up the razor")
+                time.sleep(1)
+                print("2. Leave it")
+                choice3=input()
+                if choice3 == "1":
+                    time.sleep(1)
+                    type_text("You pick up the razor and walk back to the middle of the cell")
+                    print()
+                    infinite_razor_counter=infinite_razor_counter+1
+                    continue
+                else:
+                    type_text("You leave it and walk back to the middle of the cell")
+                    print()
+                    infinite_razor_counter=infinite_razor_counter+1
+                    continue
         else:
             type_text("You look at the shelf and see a dull, old style razor")
             time.sleep(1)
@@ -96,7 +126,7 @@ while Wand == False:
                 time.sleep(1)
                 type_text("You pick up the razor and walk back to the middle of the cell")
                 print()
-                Razor=True
+                Razor=1
                 continue
             else:
                 type_text("You leave it and walk back to the middle of the cell")
@@ -376,7 +406,7 @@ print("2. Leave empty handed")
 time.sleep(1)
 choice7=input()
 if choice7 == "1":
-    if Razor == True:
+    if Razor == 1:
         type_text("You remember the razor you picked up earlier")
         print()
         time.sleep(1)
