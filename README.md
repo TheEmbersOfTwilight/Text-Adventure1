@@ -24,7 +24,7 @@ How to play
 -----------
 1. Download the latest release of the game
 2. Run the .py file:  
-     -You can either run it locally or use an online IDE such as https://trinket.io/ or https://www.online-python.com/
+     -You can either run it locally through terminal (Python 3.8+ Required) using the prompt `Python file-name.py`, or use an online IDE such as https://trinket.io/ or https://www.online-python.com/
 
 Controls
 --------
