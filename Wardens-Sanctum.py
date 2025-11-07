@@ -79,7 +79,7 @@ while Wand == False:
             time.sleep(1)
             continue
     elif choice1 == "2": 
-        if Razor == 1:
+        if Razor >= 1:
             if infinite_razor_counter >20:
                 type_text("You look at the shelf and see nothing of interest, you walk back into thhe middle of the cell")
                 print()
