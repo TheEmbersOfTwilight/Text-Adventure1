@@ -81,7 +81,7 @@ while Wand == False:
     elif choice1 == "2": 
         if Razor >= 1:
             if infinite_razor_counter <20:
-                type_text("You look at the shelf and see nothing of interest, you walk back into thhe middle of the cell")
+                type_text("You look at the shelf and see nothing of interest, you walk back into the middle of the cell")
                 print()
                 time.sleep(1)
                 infinite_razor_counter=infinite_razor_counter+1
@@ -90,7 +90,7 @@ while Wand == False:
                 type_text("You look at the shelf and see another razor identical to the one you picked up earlier")
                 time.sleep(1)
                 print()
-                type_text("Are you happy Lennon?")
+                type_text("Are you happy now, Lennon?")
                 time.sleep(1)
                 print()
                 type_text(choice)
