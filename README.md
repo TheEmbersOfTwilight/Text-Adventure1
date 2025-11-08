@@ -64,3 +64,6 @@ Roadmap
 - Planned:
   - Add save/load
   - Add accessibility flags (skip typing effects)
+  - Additional chapters and storylines
+  - More complex item interactions
+  - Extended endings
