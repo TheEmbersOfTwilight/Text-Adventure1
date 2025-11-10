@@ -67,9 +67,6 @@ Other Links
 ----------------
 Official Website: https://theembersoftwilight.github.io/Text-Adventure1/
 
-Web Player: 
-https://theembersoftwilight.github.io/Wardens-Sanctum-WebPlayer/
-
 Roadmap
 -------------------
 - Planned:
