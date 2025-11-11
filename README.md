@@ -17,8 +17,7 @@ Quick facts
 
 Requirements
 ------------
-- Python 3.8+ (standard library only)
-- No external packages required
+- Windows 10+ (For Local Installation)
 
 How to play
 -----------
