@@ -1311,4 +1311,45 @@ else:
             continue
         else:
             continue
-type_text("To be continued...")
+type_text("You wake up the next morining and walk into the inn's dining area, when the innkeeper approaches you")
+print()
+time.sleep(1)
+type_text('"Good morning, traveler. I hope you slept well."')
+print()
+time.sleep(1)  
+type_text('"By the way, there have been some strange happenings in town lately. People have been disappearing without a trace."')
+print()
+time.sleep(1)  
+type_text('"I hear that you have some experience dealing with dangerous situations. Would you be willing to help us figure out what is going on?"')
+print()
+time.sleep(1)
+while True:
+    type_text(question)
+    print()
+    time.sleep(1)
+    print("1. Yes")
+    time.sleep(1)
+    print("2. No")
+    choice20=input()
+    if choice20 == "1":
+        type_text("You agree to help the innkeeper investigate the disappearances")
+        print()
+        time.sleep(1)
+        type_text('"Thank you, traveler. We could use all the help we can get."')
+        print()
+        time.sleep(1)
+        type_text("To be continued...")
+        #Continue here
+        break
+    elif choice20 == "2":
+        type_text("You politely decline the innkeeper's request for help")
+        print()
+        time.sleep(1)
+        type_text('"I understand. Stay safe out there, traveler."')
+        print()
+        time.sleep(1)
+        type_text("To be continued...")
+        #Continue here
+        break
+    else:
+        continue
