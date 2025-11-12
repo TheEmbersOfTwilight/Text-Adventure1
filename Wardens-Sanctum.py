@@ -5,7 +5,7 @@
 import time
 import sys
 
-from .core import GameState
+from core import GameState
 
 game_state = GameState() # create new game state
 
