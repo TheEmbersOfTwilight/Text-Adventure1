@@ -4,6 +4,11 @@
 # See LICENSE-AGPl-3.0 and LICENSE-CC-BY-NC-SA-4.0 in the repository root for full license texts.
 import time
 import sys
+
+from core import GameState
+
+game_state = GameState() # create new game state
+
 question = "What do you say?" #Generic question prompt
 choice = "What do you do?" #Generic choice prompt
 def type_text(text, delay=0.025): #Function to simulate typing effect
@@ -11,19 +16,6 @@ def type_text(text, delay=0.025): #Function to simulate typing effect
         sys.stdout.write(char)
         sys.stdout.flush()  
         time.sleep(delay)
-ArinsRise=False #Whether the player has helped Arin rise to power
-Razor=0 #How many razors the player has
-Wand=False #Whether the player has picked up the wand
-door1=False #Whether the player has opened the door
-potion1=False #Whether the player has taken the potion beaker
-timewasted=False #Whether the player wasted time trying to pick the flowers by hand
-scars=False #Whether the player has scars
-flowers_collected=False #Whether the player has collected the moonshade flowers
-water_collected=False #Whether the player has collected the water from the river
-infinite_razor_counter=0 #Once it hits 20, it will start giving the player infinite razors
-powerupgraded=0 #How much the player's power has been upgraded
-Callout_counter=0 #How many times the player has called out through the bars
-DayNight_cycle=0 #0 = Day, 1 = Night
 type_text("Welcome to 'Warden's Sanctum', a text adventure game")
 print()
 type_text("When you are given a choice, type the number associated with the option you would like to choose")
@@ -47,7 +39,7 @@ print()
 type_text("You also see that one wall of the room is made of metal bars.")
 time.sleep(1)
 print()
-while Wand == False:
+while not game_state.wand:
     type_text(choice)
     time.sleep(1)
     print()
@@ -69,16 +61,16 @@ while Wand == False:
         print("2. Go back")
         choice2 = input()
         if choice2 == "1": 
-            if Callout_counter <50:
+            if game_state.callout_counter <50:
                 type_text("You call out down the empty halls and get no response")
                 time.sleep(1)
                 print()
                 type_text("You walk back into the cell")
                 print()
                 time.sleep(1)
-                Callout_counter=Callout_counter+1
+                game_state.callout_counter += 1 
                 continue
-            elif Callout_counter >=50:
+            elif game_state.callout_counter >=50:
                 type_text("You call out down the empty halls and hear a louad, deep growl off in the distance")
                 time.sleep(1)
                 print()
@@ -103,14 +95,14 @@ while Wand == False:
             time.sleep(1)
             continue
     elif choice1 == "2": 
-        if Razor >= 1:
-            if infinite_razor_counter <20:
+        if game_state.razor >= 1:
+            if game_state.infinite_razor_counter <20:
                 type_text("You look at the shelf and see nothing of interest, you walk back into the middle of the cell")
                 print()
                 time.sleep(1)
-                infinite_razor_counter=infinite_razor_counter+1
+                game_state.infinite_razor_counter += 1
                 continue
-            elif infinite_razor_counter >=20:
+            elif game_state.infinite_razor_counter >=20:
                 type_text("You look at the shelf and see another razor identical to the one you picked up earlier")
                 time.sleep(1)
                 print()
@@ -128,13 +120,13 @@ while Wand == False:
                     time.sleep(1)
                     type_text("You pick up the razor and walk back to the middle of the cell")
                     print()
-                    infinite_razor_counter=infinite_razor_counter+1
-                    Razor=Razor+1
+                    game_state.infinite_razor_counter += 1
+                    game_state.razor += 1
                     continue
                 else:
                     type_text("You leave it and walk back to the middle of the cell")
                     print()
-                    infinite_razor_counter=infinite_razor_counter+1
+                    game_state.infinite_razor_counter += 1
                     continue
         else:
             type_text("You look at the shelf and see a dull, old style razor")
@@ -151,7 +143,7 @@ while Wand == False:
                 time.sleep(1)
                 type_text("You pick up the razor and walk back to the middle of the cell")
                 print()
-                Razor=1
+                game_state.razor=1
                 continue
             else:
                 type_text("You leave it and walk back to the middle of the cell")
@@ -170,12 +162,12 @@ while Wand == False:
         type_text("You walk back into the middle of the cell")
         print()
         time.sleep(1)
-        Wand=True
+        game_state.wand=True
     else:
         continue
 type_text("You now see a silhouette of a door on the wall next to the bed")
 time.sleep(1)
-while door1 == False:
+while not game_state.door1:
     print()
     type_text(choice)
     print()
@@ -202,7 +194,7 @@ while door1 == False:
         type_text("The door swings open and you walk through")
         print()
         time.sleep(1)
-        door1=True
+        game_state.door1=True
     else:
         continue
 type_text("You see a flash of light and your vison goes dark")
@@ -214,7 +206,7 @@ print()
 type_text("You see that you are in a room filled with books and beakers of all sorts, many of the beakers are filled with colorful liquids, while others are empty")
 print()
 time.sleep(1)
-while potion1 == False:
+while not game_state.potion1:
     type_text(choice)
     print()
     time.sleep(1)
@@ -247,7 +239,7 @@ while potion1 == False:
         type_text("You grab the beaker and pocket it, then hear a strange noise just a few moments later")
         print()
         time.sleep(3)
-        potion1=True
+        game_state.potion1=True
     else:
         continue
 type_text("You see a tall, robed figure approach you and loudly bellow")
@@ -438,7 +430,7 @@ while True:
     time.sleep(1)
     choice7=input()
     if choice7 == "1":
-        if Razor == 1:
+        if game_state.razor == 1:
             type_text("You remember the razor you picked up earlier")
             print()
             time.sleep(1)
@@ -451,8 +443,8 @@ while True:
             type_text("As you collect the final flower, your razor snaps in half from the strain")
             print()
             time.sleep(1)
-            Razor=Razor-1
-            flowers_collected=True
+            game_state.razor -= 1
+            game_state.flowers_collected=True
             break
         else:
             type_text("You try to pick the flowers by hand, but their stems are too thick and sturdy to break")
@@ -461,14 +453,14 @@ while True:
             type_text("After several frustrating minutes, you are finally able to rip a few flowers free")
             print()
             time.sleep(1)
-            timewasted=True
-            flowers_collected=True
+            game_state.timewasted=True
+            game_state.flowers_collected=True
             break
     elif choice7 == "2":
         type_text("You decide to leave the flowers alone")
         print()
         time.sleep(1)
-        flowers_collected=False
+        game_state.flowers_collected=False
         break
     else:
         continue
@@ -500,8 +492,8 @@ while True:
         type_text("You wade towards the deepest part of the river you can find and scoop up some water into the vial")
         print()
         time.sleep(1)
-        water_collected=True
-        if timewasted == True:
+        game_state.water_collected=True
+        if game_state.timewasted:
             type_text("As you finish collecting the water, you hear a loud roar coming from the forest")
             print()
             time.sleep(1)
@@ -528,7 +520,7 @@ while True:
                 type_text("You are barely able to wiggle free and jump through a hole that appears in the tree trunk as you do so")
                 print()
                 time.sleep(1)
-                scars=True
+                game_state.scars=True
                 type_text("As you emerge from the hole, you feel your body aching and you notice several deep scratches on your arms and legs")
                 print()
                 time.sleep(1)
@@ -581,7 +573,7 @@ while True:
     print("2. Stay outside")
     choice_tree=input()
     if choice_tree == "1":
-        if flowers_collected == True and water_collected == True:
+        if game_state.flowers_collected and game_state.water_collected:
             type_text("You walk back into the sanctum and approach the robed figure")
             print()
             time.sleep(1)
@@ -597,8 +589,8 @@ while True:
             type_text("He begins to mix the ingredients together in a large beaker, chanting softly under his breath")
             print()
             time.sleep(1)
-            flowers_collected=False
-            water_collected=False
+            game_state.flowers_collected=False
+            game_state.water_collected=False
             type_text("As he works, you feel a strange energy building in the room")
             print()
             time.sleep(1)
@@ -611,13 +603,13 @@ while True:
             type_text("You take the potion and feel a surge of energy coursing through your body")
             print()
             time.sleep(1)
-            powerupgraded=1
-            if scars == True:
+            game_state.powerupgraded=1
+            if game_state.scars:
                 type_text("The scratches on your arms and legs begin to heal rapidly, leaving behind faint scars as a reminder of your encounter in the forest")
                 print()
                 time.sleep(1)
-                scars=False
-        elif flowers_collected == False and water_collected == False:
+                game_state.scars=False
+        elif not game_state.flowers_collected and not game_state.water_collected:
             type_text('"You have returned empty handed. I am disappointed."')
             print()
             time.sleep(1)
@@ -627,7 +619,7 @@ while True:
             type_text("Game Over")
             print()
             sys.exit()
-        elif flowers_collected == False and water_collected == True:
+        elif game_state.flowers_collected and game_state.water_collected:
             type_text('"You did not gather the flowers. This is unacceptable."')
             print()
             time.sleep(1)
@@ -637,7 +629,7 @@ while True:
             type_text("Game Over")
             print()
             sys.exit()
-        elif flowers_collected == True and water_collected == False:
+        elif game_state.flowers_collected and not game_state.water_collected:
             type_text('"You did not gather the water. This is unacceptable."')
             print()
             time.sleep(1)
@@ -841,7 +833,7 @@ while True:
                 type_text("You feel a warmth spreading through your body, and you begin to feel more powerful and energized")
                 print()
                 time.sleep(1)
-                powerupgraded=powerupgraded+1
+                game_state.powerupgraded += 1
                 type_text("You continue down the path, feeling stronger and more confident with each step")
                 print()
                 time.sleep(1)
@@ -869,7 +861,7 @@ while True:
                         type_text("You try to pull the thorns out, but they are deeply embedded in your flesh")
                         print()
                         time.sleep(1)
-                        scars=True
+                        game_state.scars=True
                         type_text("You are able to get away from the plant and slowly remove the thorns, but not before they leave behind several deep scratches on your back")
                         print()
                         time.sleep(1)
@@ -925,7 +917,7 @@ while True:
         print()
         time.sleep(1)
         type_text('"You look like you have been through quite an adventure"')
-        if scars == True:
+        if game_state.scars:
             type_text("They notice the scars on your arms and legs and raise an eyebrow")
             print()
             time.sleep(1)
@@ -1032,13 +1024,13 @@ while True:
         type_text("You share a room and sleep the night")
         print()
         time.sleep(1)
-        DayNight_cycle=0
+        game_state.day_night_cycle=0
         break
     elif choice14 == "2":
         type_text("You decide against it and walk into the town alone")
         print()
         time.sleep(1)
-        DayNight_cycle=1
+        game_state.day_night_cycle=1
         while True:
             type_text(choice)
             print()
@@ -1082,7 +1074,7 @@ while True:
                 type_text("You sleep the night")
                 print()
                 time.sleep(1)
-                DayNight_cycle=0
+                game_state.day_night_cycle=0
                 break
     else:
         continue
@@ -1205,12 +1197,12 @@ while True:
         type_text("Your vision goes dark as you lose consciousness")
         print()
         time.sleep(5)
-        ArinsRise=True
-        scars=True
-        powerupgraded=powerupgraded-1
-        if powerupgraded < 0:
-            powerupgraded=0
-        DayNight_cycle=1
+        game_state.arins_rise=True
+        game_state.scars=True
+        game_state.powerupgraded -= 1
+        if game_state.powerupgraded < 0:
+            game_state.powerupgraded=0
+        game_state.day_night_cycle=1
         type_text("You awaken hours later, lying on the ground in the ruins")
         print()
         time.sleep(1)
@@ -1243,7 +1235,7 @@ while True:
         break
     else:
         continue
-if ArinsRise == True:
+if game_state.arins_rise:
     while True:
         type_text(choice)
         print()
@@ -1259,7 +1251,7 @@ if ArinsRise == True:
             type_text("You sleep the night, feeling exhausted from your encounter with Arin")
             print()
             time.sleep(1)
-            DayNight_cycle=0
+            game_state.day_night_cycle=0
             break
         elif choice18 == "2":
             type_text("You decide to explore the town further")
@@ -1296,7 +1288,7 @@ else:
             type_text("You sleep the night, feeling refreshed and ready to continue your journey")
             print()
             time.sleep(1)
-            DayNight_cycle=0
+            game_state.day_night_cycle=0
             break
         elif choice19 == "2":
             type_text("You decide to explore the town further")
